@@ -9,3 +9,4 @@ mvn spring-boot:run
 --content-type:"application/json;charset=utf-8"
 
 #### Все тесты находятся в папке test/java/ru/andrew, в файле TestControllerTest.java
+#### После разворачивания приложения можно ознакомиться с документацией по ссылке: http://localhost:8080/swagger-ui/index.html
