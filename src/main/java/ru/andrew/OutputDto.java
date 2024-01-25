@@ -11,6 +11,6 @@ import java.util.Map;
 @Schema(name = "Выходные данные")
 public class OutputDto {
 
-    @Schema(name = "Данные по частоте встречаемости символов в строке")
+    @Schema(name = "data", description = "Данные по частоте встречаемости символов в строке")
     private Map<String, Integer> data;
 }
