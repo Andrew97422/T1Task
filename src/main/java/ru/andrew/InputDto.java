@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 @Data
 public class InputDto {
 
-    @Schema(name = "data", description = "Строка для подсчёта")
+    @Schema(name = "data", description = "Строка для подсчёта", minimum = "1", maximum = "20000000")
     @Length(min = 2, max = 20000000)
     private String data;
 }
