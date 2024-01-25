@@ -24,11 +24,11 @@ import ru.andrew.exceptions.EmptyBodyException;
         name = "Основной контроллер",
         description = "Содержит единственный метод для решения заданной задачи"
 )
-@Validated
 public class TestController {
 
     private final TestService testService;
 
+    @Validated
     @Operation(summary = "Подсчёт частоты встречаемости символов")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "40001", description = "Отсуствует необходимое поле запроса"),
