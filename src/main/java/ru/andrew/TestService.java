@@ -5,7 +5,6 @@ import ru.andrew.exceptions.BadEncodingException;
 import ru.andrew.exceptions.BadInputException;
 import ru.andrew.exceptions.EmptyBodyException;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -20,8 +19,9 @@ public class TestService {
         if (inputDto.getData().isEmpty())   throw new BadInputException("Пустая строка недопустима!");
         else {
             String str = inputDto.getData();    //њз9Оsњз9М
-            if (str.getBytes(StandardCharsets.UTF_8).length != str.length()) {
-                throw new BadEncodingException("Кодировка текста должна быть в формате UTF-8!");
+
+            if (isBinaryData(str)) {
+                throw new BadEncodingException("Нельзя передавать бинарный текст!");
             }
             Map<String, Integer> result = calculate(str);
             return OutputDto.builder().data(sortMap(result)).build();
@@ -53,5 +53,14 @@ public class TestService {
                         (a, b) -> {throw new AssertionError();},
                         LinkedHashMap::new
                 ));
+    }
+
+    private static boolean isBinaryData(String data) {
+        for (int i = 0; i < data.length(); i++) {
+            if (data.codePointAt(i) > 127 && data.codePointAt(i) < 1027 || data.codePointAt(i) > 1103) {
+                return true;
+            }
+        }
+        return false;
     }
 }

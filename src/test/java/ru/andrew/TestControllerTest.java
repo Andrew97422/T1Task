@@ -100,11 +100,11 @@ class TestControllerTest {
                 .andReturn();
     }
 
-    @DisplayName("Неверная кодировка переданного текста")
+    @DisplayName("Передан бинарный текст")
     @Test
     void failEncodingEnterTest() throws Exception {
         String request = formRequest("њз9Оsњз9М");
-        String requiredPart = "Кодировка текста должна быть в формате UTF-8!";
+        String requiredPart = "Нельзя передавать бинарный текст!";
         this.mockMvc.perform(post(PATH)
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding(StandardCharsets.UTF_8)
